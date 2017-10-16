@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Brew</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+	<script src="app.js"></script>
+	<script src="controller.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<body ng-app = "mainApp" ng-controller="Ctrl">
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img src="img/logo.png" height="60" height="60"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Chemical</a></li>
+        <li><a href="#">Alchol</a></li>
+        <li><a href="#">Sugar</a></li>
+        <li><a href="#">Others..</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <img src="img/logo.png">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Chemicals</a></li>
+        <li><a href="#section2">Alchol</a></li>
+        <li><a href="#section3">Sugar</a></li>
+        <li><a href="#section3">Other..</a></li>
+      </ul><br>
+    </div>
+    <br>
+    
+    <div class="col-sm-9 panel">
+      
+      <div class="col-md-4">
+				<label>Select Date (Optional)</label><br>
+				<div class="input-group">
+          <input type="date" class="form-control" ng-model="myDate">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="initialiseFields()">Search</button>
+          </span>
+        </div><!-- /input-group -->
+				
+			</div>
+			<div class="col-md-4">
+     
+        <label>Week</label><br>
+        <div class="form-group">
+          <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Week" ng-model="week">
+        </div> 
+      </div>
+			
+			<div class="col-md-4">
+				<label>Year</label><br>
+				<div class="form-group">
+					<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Year" ng-model="year">
+				</div>
+				
+				
+			</div>
+      <div class="col-md-4">
+        <button class="btn btn-default" ng-click=" Submit()">Submit</button>
+      </div>
+			
+     
+      </div>
+
+      
+      <div class="row">
+        
+       
+
+		    <div class="col-xs-8" ng-init="initialise()">
+		    	<table border="1" width="100%" class="table table-bordered table-responsive" >
+					
+						<tr>
+							<td></td>
+							
+							<td>Monday</td>
+							<td>Tuesday</td>
+							<td>Wednesday</td>
+							<td>Thursday</td>
+							<td>Friday</td>	
+							<td>Saturday</td>
+							<td>Sunday</td>
+						</tr>
+					
+					
+						<tr ng-repeat ="con in consumptions">
+							<td title="{{con.limit}}">{{con.name}}</td>
+							<td  ng-repeat ="d in con.days" style="background-color: {{d.color}}" title="{{d.value}}"></td>
+							
+
+						</tr>
+					
+				</table>
+		    </div>
+		    <div class="col-md-2"></div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
